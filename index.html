@@ -1,19 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head lang="en-us">
-    <meta name="viewport" content="width=320, initial-scale=1">
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css"/>
-    <script defer src="script.js"></script>
-  </head>
-  <body>
 
-    <div>
-        <h1 class="initialPage">Welcome to my Quiz</h1>
+<head lang="en-us">
+  <meta name="viewport" content="width=320, initial-scale=1">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="questions.js"></script>
+  <script defer src="script.js"></script>
+</head>
 
-        <button id="startButton">Click Me!</button>
-    </div>
-    
+<body>
   
-  </body>
+  <div id="startDiv" class="positioning">
+    <h1 class="initialPageTitle">Welcome to my Quiz</h1>
+    <p>Click the start button to start the quiz. Answer quickly, you're being timed!</p>
+    <button id="startBtn">Lets start!</button>
+  </div>
+
+  <div id="quizDiv" class="positioning hide">
+    <h2 id="questionLocation">A Question</h1>
+    <button id="answerA">Answer</button>
+    <button id="answerB">Answer</button>
+    <button id="answerC">Answer</button>
+    <button id="answerD">Answer</button>
+  </div>
+
+  <div id="leaderboardDiv" class="positioning hide">
+    <h1>Leaderboard</h1>
+    <form id="usersNameContainer">
+      <input type="text" placeholder="Enter your name:" id="usersNameInput">
+    </form>
+    
+    <ul id="scoresList"></ul>
+
+    <button id="returnToStart">Play Again</button>
+  </div>
+
+</body>
+
 </html>

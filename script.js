@@ -1,67 +1,150 @@
-let questions = [
-    ["question 1", "This is where the question will live", ["answer 1", "answer 2", "answer 3", "answer 4"]],
-    ["question 2", "This is where the question will live", ["answer 1", "answer 2", "answer 3", "answer 4"]],
-    ["question 3", "This is where the question will live", ["answer 1", "answer 2", "answer 3", "answer 4"]],
-    ["question 4", "This is where the question will live", ["answer 1", "answer 2", "answer 3", "answer 4"]]
-  ]
+const startScreen = document.getElementById("startDiv");
+const questionScreen = document.getElementById("quizDiv");
+const leaderboardScreen = document.getElementById("leaderboardDiv");
 
-  /* var questions = [
-  {
-    title: "Commonly used data types DO NOT include:",
-    choices: ["strings", "booleans", "alerts", "numbers"],
-    answer: "alerts"
-  },
-  {
-    title: "The condition in an if / else statement is enclosed within ____.",
-    choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-    answer: "parentheses"
-  },
-  {
-    title: "Arrays in JavaScript can be used to store ____.",
-    choices: [
-      "numbers and strings",
-      "other arrays",
-      "booleans",
-      "all of the above"
-    ],
-    answer: "all of the above"
-  },
-  {
-    title:
-      "String values must be enclosed within ____ when being assigned to variables.",
-    choices: ["commas", "curly brackets", "quotes", "parentheses"],
-    answer: "quotes"
-  },
-  {
-    title:
-      "A very useful tool used during development and debugging for printing content to the debugger is:",
-    choices: ["JavaScript", "terminal / bash", "for loops", "console.log"],
-    answer: "console.log"
+const startButton = document.getElementById("startBtn");
+
+const questionPlace = document.getElementById("questionLocation");
+const answerOption1 = document.getElementById("answerA");
+const answerOption2 = document.getElementById("answerB");
+const answerOption3 = document.getElementById("answerC");
+const answerOption4 = document.getElementById("answerD");
+
+const usernameForm = document.getElementById("usersNameContainer");
+const usernameInput = document.getElementById("usersNameInput");
+const scoresPlace = document.getElementById("scoresList");
+
+const startOverButton = document.getElementById("returnToStart");
+
+const totalQuestionsNumber = questions.length;
+
+let countdownTimer = 0;
+
+let finalScore;
+
+let currentQuestionNumber = 0;
+
+let usersNames = []
+
+function startQuiz() {
+  // this will hide the initial starting div
+  startScreen.setAttribute("class", "hide");
+
+  // this will uhide the questions div and keep the positiong
+  questionScreen.removeAttribute("class", "hide");
+  questionScreen.setAttribute("class", "positioning")
+
+  // this will start the function to populate the questions and answers
+  askQuestions();
+}
+
+function askQuestions() {
+  // this is how I know which question the user is currently on
+  let currentQuestion = questions[currentQuestionNumber];
+
+  questionPlace.textContent = currentQuestion.questionTitle;
+
+  answerOption1.textContent = currentQuestion.answerOptions[0];
+  answerOption2.textContent = currentQuestion.answerOptions[1];
+  answerOption3.textContent = currentQuestion.answerOptions[2];
+  answerOption4.textContent = currentQuestion.answerOptions[3];
+
+  
+}
+
+function checkAnswer() {
+  let buttonContents = this.innerHTML;
+  let realAnswer = questions[currentQuestionNumber].correctAnswer;
+
+  if (buttonContents === realAnswer) {
+    currentQuestionNumber ++;
+    if (currentQuestionNumber < totalQuestionsNumber) {
+      askQuestions();
+    }
+    else {
+      currentQuestionNumber = 0;
+      leaderboardLoad();
+    }
   }
-]; */
-  
-  let startButton = document.querySelector("#startQuiz");
-  
-  let finalScore;
-  
-  let displayQuestion = document.createElement();
-  
-  function quizTimer() {
-    let timeLeft = 75;
-  
-    let timeInterval = setInterval(function() {
-      timerEl.textContent = timeLeft;
-      timeLeft--;
-  
-      if (timeLeft === 0) {
-        timerEl.textContent = "";
-        speedRead();
-        clearInterval(timeInterval);
-      }
-  
-    }, 1000);
+  else {
+    alert("Wrong answer, try again");
   }
-  
-  startButton.addEventListener("click", function() {
-      timeInterval();  
-  })
+
+}
+
+function leaderboardLoad() {
+  questionScreen.setAttribute("class", "hide")
+
+  leaderboardScreen.removeAttribute("class", "hide");
+  leaderboardScreen.setAttribute("class", "positioning");
+
+  scoresPlace.innerHTML = "";
+
+  for (var i = 0; i < usersNames.length; i ++) {
+    let usersName = usersNames[i];
+
+    let li = document.createElement("li");
+    li.textContent = usersName;
+    scoresPlace.appendChild(li);
+  }
+}
+
+function startOver() {
+  leaderboardScreen.setAttribute("class", "hide");
+
+  startScreen.removeAttribute("class", "hide")
+  startScreen.setAttribute("class", "positioning")
+}
+
+usernameForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  let usernameText = usernameInput.value.trim();
+
+  if (usernameText === "") {
+    return;
+  }
+
+  usersNames.push(usernameText);
+  usernameInput.nodeValue = "";
+
+  leaderboardLoad();
+});
+
+answerOption1.addEventListener("click", checkAnswer);
+answerOption2.addEventListener("click", checkAnswer);
+answerOption3.addEventListener("click", checkAnswer);
+answerOption4.addEventListener("click", checkAnswer);
+
+startOverButton.addEventListener("click", startOver);
+
+startButton.addEventListener("click", startQuiz);
+
+
+
+
+
+
+
+
+
+// function quizTimer() {
+//   let timeLeft = 75;
+
+//   let timeInterval = setIntervalZ(function () {
+//     timerEl.textContent = timeLeft;
+//     timeLeft--;
+
+//     if (timeLeft === 0) {
+//       timerEl.textContent = "";
+//       speedRead();
+//       clearInterval(timeInterval);
+//     }
+
+//   }, 1000);
+// }
+
+// startButton.addEventListener("click", function () {
+//   timeInterval();
+// })
+

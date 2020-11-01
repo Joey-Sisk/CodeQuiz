@@ -7,6 +7,37 @@ body, html {
   }
   
 
-  .initialPage {
-      text-align: center;
-  }
+.initialPage {
+    text-align: center;
+}
+
+#startDiv { 
+}
+
+#quizDiv {
+}
+
+.hide {
+    display: none;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    height: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    font-size: 1.5em;
+    line-height: 1.5;
+    border: solid, black;
+}
+
+.positioning {
+    width: 800px;
+    margin: 0 auto;
+    margin-top: 40px;
+}
