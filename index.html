@@ -12,28 +12,39 @@
 <body>
   
   <div id="startDiv" class="positioning">
-    <h1 class="initialPageTitle">Welcome to my Quiz</h1>
-    <p>Click the start button to start the quiz. Answer quickly, you're being timed!</p>
-    <button id="startBtn">Lets start!</button>
+    <div id="startDivContainer">
+      <h1 class="initialPageTitle">Welcome to my Quiz</h1>
+      <p>Click the start button to start the quiz. Answer quickly, you're being timed!</p>
+      <button id="startBtn">Lets start!</button>
+
+      <br>
+
+      <h3 id="LeaderboardTitle">
+        Leaderboard
+      </h3>
+      <ul id="scoresList"></ul>
+    </div>
   </div>
+  
+  <div id="timer" class="">0</div>
 
   <div id="quizDiv" class="positioning hide">
-    <h2 id="questionLocation">A Question</h1>
-    <button id="answerA">Answer</button>
-    <button id="answerB">Answer</button>
-    <button id="answerC">Answer</button>
-    <button id="answerD">Answer</button>
+    <h2 id="questionLocation">A Question</h2>
+    <ul>
+      <li><button id="answerA">Answer</button></li>
+      <li><button id="answerB">Answer</button></li>
+      <li><button id="answerC">Answer</button></li>
+      <li><button id="answerD">Answer</button></li>
+    </ul>
   </div>
 
   <div id="leaderboardDiv" class="positioning hide">
-    <h1>Leaderboard</h1>
-    <form id="usersNameContainer">
-      <input type="text" placeholder="Enter your name:" id="usersNameInput">
-    </form>
-    
-    <ul id="scoresList"></ul>
-
-    <button id="returnToStart">Play Again</button>
+    <div id="leaderboardCenter">
+      <h1>Enter Your Name</h1>
+      <form id="usersNameContainer">
+        <input type="text" placeholder="Enter your name:" id="usersNameInput">
+      </form>
+    </div>
   </div>
 
 </body>
