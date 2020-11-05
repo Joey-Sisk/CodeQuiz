@@ -1,50 +1,49 @@
 let questions = [
     {
-        questionTitle: "This is a code related question(3):",
+        questionTitle: "If I want to include JavaScript in my HTML file I should use this tag:",
         answerOptions: [
-            "strings",
-            "booleans",
-            "alerts",
-            "numbers"],
-        correctAnswer: "alerts"
+            "program",
+            "code",
+            "script",
+            "java"],
+        correctAnswer: "code"
     },
     {
-        questionTitle: "This question is related to web design and programming(3).",
+        questionTitle: "For debugging purposes you can use the ____ method to view data in the console:",
         answerOptions: [
-            "quotes",
-            "curly brackets",
-            "parentheses",
-            "square brackets"],
-        correctAnswer: "parentheses"
-    },
-    {
-        questionTitle: "This question relates to JavaScript(4).",
-        answerOptions: [
-            "numbers and strings",
-            "other arrays",
-            "booleans",
-            "all of the above"
-        ],
-        correctAnswer: "all of the above"
-    },
-    {
-        questionTitle:
-            "This is probably a question about JavaScript stuff(3).",
-        answerOptions: [
-            "commas",
-            "curly brackets",
-            "quotes",
-            "parentheses"],
-        correctAnswer: "quotes"
-    },
-    {
-        questionTitle:
-            "This question is about web development and design(4)",
-        answerOptions: [
-            "JavaScript",
-            "terminal / bash",
-            "for loops",
+            "console.push",
+            "print.log",
+            "consoleLog.innerHTML",
             "console.log"],
         correctAnswer: "console.log"
+    },
+    {
+        questionTitle: "Combining multiple strings or strings and numbers is called:",
+        answerOptions: [
+            "Concating",
+            "Adding",
+            "Glueing",
+            "Stapleing"],
+        correctAnswer: "Concating"
+    },
+    {
+        questionTitle:
+            "The method to open a window that the user can type into is:",
+        answerOptions: [
+            "alert()",
+            "log()",
+            "promt()",
+            "confirm()"],
+        correctAnswer: "promt()"
+    },
+    {
+        questionTitle:
+            "If you want '0' equals 0 to return false you should use this operator",
+        answerOptions: [
+            "===",
+            "==",
+            "!=",
+            "<="],
+        correctAnswer: "==="
     }
 ];
