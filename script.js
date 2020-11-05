@@ -27,9 +27,6 @@ const totalQuestionsNumber = questions.length;
 // this sets the countdown timer based on how long of a quiz the user will be completeing
 let countdownTimer = ((questions.length * 20) + 1);
 
-// this is used by the timer function
-let holdInterval = 0;
-
 // this is how much the timer will be reduced when a wrong answer is picked
 let penalty = (questions.length * 3);
 
@@ -45,9 +42,16 @@ let usersNames = [];
 // this holds the winning score
 let winScore;
 
+let stopClock;
+
+let playerScore = 0;
+
 function startQuiz() {
   // resets the score for new runs
   winScore = 0;
+
+  playerScore = 0;
+
   // this will hide the initial starting div
   startScreen.setAttribute("class", "hide");
 
@@ -70,6 +74,10 @@ function startTimer() {
     if (countdownTimer <= 0) {
       clearInterval(timerInterval);
       leaderboardPageLoad();
+    }
+
+    if (stopClock === true) {
+      clearInterval(timerInterval);
     }
   }, 1000);
 }
@@ -109,7 +117,8 @@ function checkAnswer() {
     // if they match and we are on the last question we go to the leaderbpard page
     else {
       currentQuestionNumber = 0;
-      winScore = clock.innerHTML;
+      playerScore = clock.innerHTML;
+      stopClock = true;
       leaderboardPageLoad();
     }
   }
@@ -131,6 +140,9 @@ function turnRed() {
 
 // this hides the questions div and shows the leaderboard div
 function leaderboardPageLoad() {
+
+  
+
   questionScreen.setAttribute("class", "hide")
 
   leaderboardScreen.classList.remove("hide");  
@@ -138,13 +150,13 @@ function leaderboardPageLoad() {
 
 // this fills out the leaderboard with the users name and current score and shows all previous scores
 function leaderboardLoad() {
-  scoresPlace.innerHTML = "";
+  
 
   for (var i = 0; i < usersNames.length; i ++) {
     let usersName = usersNames[i];
 
     let li = document.createElement("li");
-    li.textContent = usersName;
+    li.textContent = (usersName + ": " + playerScore);
     scoresPlace.appendChild(li);
   }
 }
@@ -162,6 +174,8 @@ usernameForm.addEventListener("submit", function(event) {
     return;
   }
 
+  clock.innerHTML = "0";
+  
   // this adds the input into the previous variable
   usersNames.push(usernameText);
   usernameInput.nodeValue = "";
