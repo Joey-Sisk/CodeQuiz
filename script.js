@@ -154,9 +154,11 @@ function leaderboardLoad() {
 
   for (var i = 0; i < usersNames.length; i ++) {
     let usersName = usersNames[i];
-
+	
+    let storedUsers = JSON.parsel(localStorage.getItem("scores"));
+    
     let li = document.createElement("li");
-    li.textContent = (usersName + ": " + playerScore);
+    li.textContent = (storedUsers.userName + ": " + storedUsers.winningscore);
     scoresPlace.appendChild(li);
   }
 }
@@ -177,7 +179,13 @@ usernameForm.addEventListener("submit", function(event) {
   clock.innerHTML = "0";
   
   // this adds the input into the previous variable
-  usersNames.push(usernameText);
+  usersNames.push{
+    usersName: usernameText,
+  	winningScore: winScore
+  };
+  
+  localStorage.setItem("scores", JSON.stringify(usersName));
+  
   usernameInput.nodeValue = "";
 
   // this calls the function to add the name to the list
@@ -188,7 +196,6 @@ usernameForm.addEventListener("submit", function(event) {
 
   startScreen.classList.remove("hide")
 });
-
 
 // these watch for the user to click on an answer button
 answerOption1.addEventListener("click", checkAnswer);
