@@ -5,7 +5,6 @@ body, html {
   min-height:100%;
   font: Arial 14px;
 }
-  
 
 .initialPage {
   text-align: center;
@@ -41,6 +40,17 @@ body, html {
   align-items: center;
 }
 
+#scoresList {
+  min-height: 300px;
+  width:  500px;
+  padding: 5px;
+  border: solid 2px indigo;
+  border-radius: 0%;
+  font-size: 22px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-weight: bold;
+}
+
 .hide {
   display: none;
 }
@@ -52,6 +62,10 @@ body, html {
 h1, h2, h3 {
   text-align: center;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+h3 {
+  font-size: 30px;
 }
 
 p {
@@ -89,6 +103,15 @@ button {
   display: inline-block;
   font-size: 18px;
   margin: 0 auto;
+}
+
+input {
+  height: 35px;
+  width: 100%;
+  padding: 4px;
+  margin-top: 15px;
+  border: solid 2px indigo;
+  border-radius: 0%;
 }
 
 .positioning {
