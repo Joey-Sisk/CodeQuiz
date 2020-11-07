@@ -18,6 +18,10 @@ body, html {
   align-items: center;
 }
 
+#startBtn {
+  margin-top: 20px;
+}
+
 #timer {
   position: fixed;
   top: 100px;

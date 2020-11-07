@@ -6,7 +6,7 @@ let questions = [
             "code",
             "script",
             "java"],
-        correctAnswer: "code"
+        correctAnswer: "script"
     },
     {
         questionTitle: "For debugging purposes you can use the ____ method to view data in the console:",

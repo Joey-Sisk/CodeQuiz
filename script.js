@@ -46,6 +46,8 @@ let stopClock;
 
 let playerScore = 0;
 
+let currentStorage = [];
+
 function startQuiz() {
   // resets the score for new runs
   winScore = 0;
@@ -117,7 +119,7 @@ function checkAnswer() {
     // if they match and we are on the last question we go to the leaderbpard page
     else {
       currentQuestionNumber = 0;
-      playerScore = clock.innerHTML;
+      winScore = clock.innerHTML;
       stopClock = true;
       leaderboardPageLoad();
     }
@@ -141,8 +143,6 @@ function turnRed() {
 // this hides the questions div and shows the leaderboard div
 function leaderboardPageLoad() {
 
-  
-
   questionScreen.setAttribute("class", "hide")
 
   leaderboardScreen.classList.remove("hide");  
@@ -150,15 +150,14 @@ function leaderboardPageLoad() {
 
 // this fills out the leaderboard with the users name and current score and shows all previous scores
 function leaderboardLoad() {
-  
 
-  for (var i = 0; i < usersNames.length; i ++) {
-    let usersName = usersNames[i];
-	
-    let storedUsers = JSON.parsel(localStorage.getItem("scores"));
-    
+  let storedUsers = JSON.parse(localStorage.getItem("scores"));
+
+  for (var i = 0; i < storedUsers.length; i ++) {
+    let usersName = storedUsers[i];
+
     let li = document.createElement("li");
-    li.textContent = (storedUsers.userName + ": " + storedUsers.winningscore);
+    li.textContent = (storedUsers[i].usersName + ": " + storedUsers[i].winningScore);
     scoresPlace.appendChild(li);
   }
 }
@@ -177,25 +176,33 @@ usernameForm.addEventListener("submit", function(event) {
   }
 
   clock.innerHTML = "0";
-  
+
   // this adds the input into the previous variable
-  usersNames.push{
+  usersNames = {
     usersName: usernameText,
   	winningScore: winScore
   };
   
-  localStorage.setItem("scores", JSON.stringify(usersName));
+  currentStorage = JSON.parse(localStorage.getItem("scores")) || [];
+
+  currentStorage.push(usersNames);
+
+  localStorage.setItem("scores", JSON.stringify(currentStorage));
   
   usernameInput.nodeValue = "";
 
   // this calls the function to add the name to the list
   leaderboardLoad();
-  
-  // after the user inputs their name we send them back to the start screen
+
+  startScreenLoad();
+});
+
+function startScreenLoad() {
+
   leaderboardScreen.setAttribute("class", "hide");
 
-  startScreen.classList.remove("hide")
-});
+  startScreen.classList.remove("hide");
+}
 
 // these watch for the user to click on an answer button
 answerOption1.addEventListener("click", checkAnswer);
