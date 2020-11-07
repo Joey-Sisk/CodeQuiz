@@ -150,13 +150,16 @@ function leaderboardPageLoad() {
 
 // this fills out the leaderboard with the users name and current score and shows all previous scores
 function leaderboardLoad() {
-
+  while (scoresPlace.firstChild) {
+        scoresPlace.removeChild(scoresPlace.firstChild);
+  }
+  
   let storedUsers = JSON.parse(localStorage.getItem("scores"));
 
   for (var i = 0; i < storedUsers.length; i ++) {
-    let usersName = storedUsers[i];
-
     let li = document.createElement("li");
+
+    
     li.textContent = (storedUsers[i].usersName + ": " + storedUsers[i].winningScore);
     scoresPlace.appendChild(li);
   }
