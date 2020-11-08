@@ -60,7 +60,7 @@ function startQuiz() {
   
   //start the function to populate the questions and answers
   askQuestions();
-  
+
   // begin the function that counts down and moves the user to the leaderboard screen
   startTimer();
 }
@@ -198,6 +198,12 @@ usernameForm.addEventListener("submit", function(event) {
   
   // clear out usernameInput
   usernameInput.nodeValue = "";
+
+  // reset the timer
+  countdownTimer = ((questions.length * 20) + 1);
+
+  // allow the clock to start again
+  stopClock = false;
 
   // this calls the function to add the name to the list
   leaderboardLoad();
