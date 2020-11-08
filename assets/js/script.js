@@ -116,7 +116,6 @@ function checkAnswer() {
     
     // if they match and we are on the last question we go to the leaderbpard page
     else {
-      currentQuestionNumber = 0;
       winScore = clock.innerHTML;
       stopClock = true;
       leaderboardPageLoad();
@@ -201,6 +200,9 @@ usernameForm.addEventListener("submit", function(event) {
 
   // reset the timer
   countdownTimer = ((questions.length * 20) + 1);
+
+  // reset the question number
+  currentQuestionNumber = 0;
 
   // allow the clock to start again
   stopClock = false;
